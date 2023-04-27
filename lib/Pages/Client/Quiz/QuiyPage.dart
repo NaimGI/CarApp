@@ -37,7 +37,9 @@ class QuiyPage extends StatelessWidget {
                   border: Border.all(color: lightgrey, width: 2),
                 ),
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     icon: const Icon(
                       CupertinoIcons.xmark,
                       color: Colors.white,
@@ -80,7 +82,7 @@ class QuiyPage extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: headingText(color: blue, size: 18, text: "Continue"),
+                    child: headingText(color: blue, size: 18, text: "تابع"),
                   ),
                 ),
               )

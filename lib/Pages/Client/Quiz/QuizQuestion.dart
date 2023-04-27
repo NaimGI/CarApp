@@ -8,6 +8,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../../../Service/QuestionsService.dart';
 import '../../../components/textStyle.dart';
 import '../../../config/colors.dart';
+import 'ScorePage.dart';
 
 class QuizQuestion extends StatefulWidget {
   const QuizQuestion({super.key});
@@ -35,6 +36,10 @@ class _QuizQuestionState extends State<QuizQuestion> {
     Colors.white,
     Colors.white,
     Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
   ];
 
   @override
@@ -53,6 +58,10 @@ class _QuizQuestionState extends State<QuizQuestion> {
 
   resetColors() {
     optionsColor = [
+      Colors.white,
+      Colors.white,
+      Colors.white,
+      Colors.white,
       Colors.white,
       Colors.white,
       Colors.white,
@@ -85,6 +94,7 @@ class _QuizQuestionState extends State<QuizQuestion> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -172,10 +182,10 @@ class _QuizQuestionState extends State<QuizQuestion> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                          image:
-                              NetworkImage(data[currentQuestionIndex]["img"],),
+                          image: NetworkImage(
+                            data[currentQuestionIndex]["img"],
+                          ),
                           fit: BoxFit.cover,
-                          
                         ),
                       ),
                     ),
@@ -206,7 +216,7 @@ class _QuizQuestionState extends State<QuizQuestion> {
                               if (correctAnswer
                                   .contains(optionsList[index].toString())) {
                                 optionsColor[index] = Colors.green;
-                                points = points + 10;
+                                points = points + 1;
                               } else {
                                 optionsColor[index] = Colors.red;
                               }
@@ -218,6 +228,10 @@ class _QuizQuestionState extends State<QuizQuestion> {
                               } else {
                                 timer!.cancel();
                                 //here you can do whatever you want with the results
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Score(points)));
                               }
                             });
                           },

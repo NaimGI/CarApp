@@ -21,14 +21,13 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _handleSignUp(String email, String pass, String name, context) async {
     // Set the isLoading flag to true to start the loading indicator
-      showLoadingIndicator(context);
+    showLoadingIndicator(context);
 
     try {
       await AuthService.signUp(email, pass, name, context);
-      
     } catch (e) {
       // Handle sign-up error, e.g. show error message
-        showErrorDialog(context, 'Sign up error', e.toString());
+      showErrorDialog(context, 'Sign up error', e.toString());
     } finally {
       // Set the isLoading flag to false to stop the loading indicator
     }
@@ -81,7 +80,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
- 
     return Padding(
         padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(
@@ -102,10 +100,10 @@ class _SignUpFormState extends State<SignUpForm> {
                       height: 32,
                     ),
                     _TextField(
-                      label: 'Name',
+                      label: 'الاسم',
                       icon: Icons.person,
                       validator: (value) =>
-                          value!.isEmpty ? 'Enter Your Name' : null,
+                          value!.isEmpty ? 'ادخل الاسم' : null,
                       controller: namecontroller,
                       onsaved: (value) {
                         namecontroller.text = value!;
@@ -113,34 +111,36 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                     const SizedBox(height: 10),
                     _TextField(
-                        label: 'Email address',
-                        icon: Icons.email,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "L'email ne peut pas être vide";
-                          }
-                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                              .hasMatch(value)) {
-                            return ("Entrer une adresse e-mail valide");
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: emailController,
-                        onsaved: (value) {
-                          namecontroller.text = value!;
-                        }),
+                      label: 'البريد الإلكتروني',
+                      icon: Icons.email,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "لا يمكن ترك حقل البريد الإلكتروني فارغًا";
+                        }
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                            .hasMatch(value)) {
+                          return ("يرجى إدخال عنوان بريد إلكتروني صحيح");
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: emailController,
+                      onsaved: (value) {
+                        namecontroller.text = value!;
+                      },
+                    ),
                     const SizedBox(height: 17),
                     _TextField(
-                        label: 'Password',
-                        icon: Icons.lock,
-                        hidden: true,
-                        validator: (value) =>
-                            value!.isEmpty ? 'Enter Your Password' : null,
-                        controller: passController,
-                        onsaved: (value) {
-                          namecontroller.text = value!;
-                        }),
+                      label: 'كلمة المرور',
+                      icon: Icons.lock,
+                      hidden: true,
+                      validator: (value) =>
+                          value!.isEmpty ? 'ادخل كلمة المرور' : null,
+                      controller: passController,
+                      onsaved: (value) {
+                        namecontroller.text = value!;
+                      },
+                    ),
                     InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
@@ -210,34 +210,36 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                     const SizedBox(height: 10),
                     _TextField(
-                        label: 'Email address',
-                        icon: Icons.email,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "L'email ne peut pas être vide";
-                          }
-                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                              .hasMatch(value)) {
-                            return ("Entrer une adresse e-mail valide");
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: emailController,
-                        onsaved: (value) {
-                          namecontroller.text = value!;
-                        }),
+                      label: 'عنوان البريد الإلكتروني',
+                      icon: Icons.email,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "يجب إدخال عنوان البريد الإلكتروني";
+                        }
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                            .hasMatch(value)) {
+                          return ("الرجاء إدخال عنوان بريد إلكتروني صالح");
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: emailController,
+                      onsaved: (value) {
+                        namecontroller.text = value!;
+                      },
+                    ),
                     const SizedBox(height: 10),
                     _TextField(
-                        label: 'Password',
-                        icon: Icons.lock,
-                        hidden: true,
-                        validator: (value) =>
-                            value!.isEmpty ? 'Enter Your Password' : null,
-                        controller: passController,
-                        onsaved: (value) {
-                          namecontroller.text = value!;
-                        }),
+                      label: 'كلمة المرور',
+                      icon: Icons.lock,
+                      hidden: true,
+                      validator: (value) =>
+                          value!.isEmpty ? 'يجب إدخال كلمة المرور' : null,
+                      controller: passController,
+                      onsaved: (value) {
+                        namecontroller.text = value!;
+                      },
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -315,8 +317,14 @@ class _TextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // added
         children: [
-          Flexible(
+          Icon(
+            icon,
+            color: Colors.grey.shade400,
+          ),
+          SizedBox(width: 16), // added
+          Expanded(
             child: TextFormField(
               validator: validator,
               controller: controller,
@@ -330,10 +338,6 @@ class _TextField extends StatelessWidget {
                 labelStyle: TextStyle(
                   color: Colors.grey.shade400,
                   fontSize: 18,
-                ),
-                suffixIcon: Icon(
-                  icon,
-                  color: Colors.grey.shade400,
                 ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(

@@ -19,4 +19,21 @@ class QuestionService {
 
     return questionsList;
   }
+
+  Future<List<Map<String, dynamic>>> getAllQuiz() async {
+    List<Map<String, dynamic>> quiList = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance.collection('Quiz').get();
+
+      for (var doc in snapshot.docs) {
+        Map<String, dynamic> quiz = doc.data();
+        quiz['id'] = doc.id;
+        quiList.add(quiz);
+      }
+    } catch (e) {
+      print('Error getting questions: $e');
+    }
+    return quiList;
+  }
 }

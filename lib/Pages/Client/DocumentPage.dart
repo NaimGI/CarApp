@@ -119,6 +119,7 @@ class _DocumentPageState extends State<DocumentPage> {
           Container(
             width: double.infinity,
             padding: EdgeInsets.only(top: 20, right: 40),
+            margin: EdgeInsets.all(10),
             child: Text(
               "الممارسة",
               style: TextStyle(
@@ -126,7 +127,7 @@ class _DocumentPageState extends State<DocumentPage> {
                   fontWeight: FontWeight.bold,
                   color: Colors.purple),
             ),
-            alignment: Alignment.topRight,
+            alignment: Alignment.topLeft,
           ),
           Container(
             child: Image.asset(

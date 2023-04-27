@@ -9,4 +9,9 @@ class AppColors {
   static const primaryBg = Color(0xfff5f5fd);
   static const secondaryBg = Color(0xffececf6);
   static const barBg = Color(0xffe3e3ee);
+  static const kiconColor = Color.fromRGBO(199, 163, 212, 1);
+  static const kclipath = [
+    Color.fromRGBO(42, 37, 92, 1),
+    Color.fromRGBO(182, 64, 116, 1)
+  ];
 }
