@@ -5,6 +5,7 @@ import '../Pages/Client/DocumentPage.dart';
 import '../Pages/Client/Mokatapage.dart';
 import '../Pages/Client/Prodile.dart';
 import '../Pages/Client/QuestionPage.dart';
+import '../Pages/Client/VedioPage.dart';
 import '../Service/PDFApi.dart';
 import '../Service/auth.dart';
 
@@ -27,7 +28,7 @@ class _NavigateBarPatientState extends State<NavigateBarPatient> {
     QuestionPage(),
     Page4(),
     Profile(),
-    Profile()
+    VedioPage()
   ];
 
   @override
@@ -159,6 +160,17 @@ class _NavigateBarPatientState extends State<NavigateBarPatient> {
                     color: Colors.white,
                   ),
                   itemLabel: 'Page 4',
+                ),
+                BottomBarItem(
+                  inActiveItem: Icon(
+                    Icons.video_camera_back,
+                    color: Colors.blueGrey,
+                  ),
+                  activeItem: Icon(
+                    Icons.video_camera_back,
+                    color: Colors.white,
+                  ),
+                  itemLabel: 'Page 5',
                 ),
               ],
               onTap: (index) {

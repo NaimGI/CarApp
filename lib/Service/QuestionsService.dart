@@ -36,4 +36,21 @@ class QuestionService {
     }
     return quiList;
   }
+
+  Future<List<Map<String, dynamic>>> getAllVideo() async {
+    List<Map<String, dynamic>> vedioList = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance.collection('Video').get();
+
+      for (var doc in snapshot.docs) {
+        Map<String, dynamic> vd = doc.data();
+        vd['id'] = doc.id;
+        vedioList.add(vd);
+      }
+    } catch (e) {
+      print('Error getting questions: $e');
+    }
+    return vedioList;
+  }
 }

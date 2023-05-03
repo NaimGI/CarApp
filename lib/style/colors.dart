@@ -14,4 +14,5 @@ class AppColors {
     Color.fromRGBO(42, 37, 92, 1),
     Color.fromRGBO(182, 64, 116, 1)
   ];
+  static const gradiantSecond = Color(0xFF6985e8);
 }
